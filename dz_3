@@ -1,0 +1,27 @@
+public void revert(){ //Итеративный разворот
+        Node previous = null;
+        Node current = head;
+        while (current != null){
+            Node next = current.getNext();
+            current.setNext(previous);
+            previous = current;
+            current = next;
+        }
+        head = previous;
+    }
+
+    public void recursiveRevert(){ // рекурсивный разворот
+        if(head.next != null && head != null){
+            recursiveRevert(head.next, head);
+        }
+    }
+    private void recursiveRevert(Node currentNode, Node previousNode){
+        if(currentNode.getNext() == null){
+            head = currentNode;
+        }
+        else{
+            recursiveRevert(currentNode.next, currentNode);
+        }
+        currentNode.next = previousNode;
+        previousNode.next = null;
+    }
